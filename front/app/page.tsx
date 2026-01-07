@@ -1,9 +1,11 @@
 "use client"
 
+//TODO
+//Add fetch data skeleton
+
 import { useActionState, useEffect, useState } from "react"
 import axios from "./axios"
 import { getAnswer } from "./actions";
-import { error } from "console";
 
 
 interface History {
@@ -15,10 +17,10 @@ interface History {
 
 export default function Home() {
 
-  const [messages, setMessage] = useState<History[] | null>(null)
+  const [messages, setMessage] = useState<History[]>([])
+  const [isFetchFailed, setIsFetchFailed] = useState(false)
   const [state, formAction, isPending] = useActionState(getAnswer, null);
 
-  console.log(state)
   useEffect(() => {
     fetchHistory()
   }, [])
@@ -33,10 +35,11 @@ export default function Home() {
   const fetchHistory = () => {
     axios.get('/history')
       .then(function (response) {
+        setIsFetchFailed(false)
         setMessage(response.data)
       })
       .catch(function (error) {
-        setMessage(null)
+        setIsFetchFailed(true)
       })
   }
 
@@ -44,14 +47,13 @@ export default function Home() {
 
     <div className="flex justify-center  items-center mt-5">
       <div id="chat-content" className="w-full max-w-md bg-white rounded-xl shadow-lg">
-
         <div className="divide-y divide-white">
           <div className="flex flex-col ml-5 my-auto p-5">
             <div className="font-medium text-lg">Support team</div>
             <div className="text-green-600 text-sm">Active now</div>
           </div>
 
-          <div className="bg-[#F7F7F7] p-5 space-y-3 shadow-inner">
+          {isFetchFailed ? <div className="text-[red] p-5">Couldn't fetch history.</div> : <div className="bg-[#F7F7F7] p-5 space-y-3 shadow-inner">
             {messages?.map(({ sender, message, _id }) => {
               if (sender === "bot") {
                 return <div className="flex justify-end" key={_id}>
@@ -63,7 +65,7 @@ export default function Home() {
                 </div>
               }
             })}
-          </div>
+          </div>}
 
           <form action={formAction}>
             <div className="p-5">

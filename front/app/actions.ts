@@ -4,7 +4,7 @@ export async function getAnswer(prevState: unknown, queryData: FormData) {
     const question = queryData.get("question")
 
     if (!question) return {
-        error: "field is required"
+        error: "Field is required"
     }
 
     try {
