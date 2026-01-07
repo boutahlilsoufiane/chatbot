@@ -1,8 +1,5 @@
 "use client"
 
-//TODO
-//Add fetch data skeleton
-
 import { useActionState, useEffect, useState } from "react"
 import axios from "./axios"
 import { getAnswer } from "./actions";

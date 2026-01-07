@@ -6,12 +6,11 @@ export async function getAnswer(prevState: unknown, queryData: FormData) {
     if (!question) return {
         error: "Field is required"
     }
-
     try {
-    const res = await axios.post("/get-answer", { question })
-    return { data: res.data }
-  } catch {
-    return { error: "Something is wrong, try again!" }
-  }
+        const res = await axios.post("/get-answer", { question })
+        return { data: res.data }
+    } catch {
+        return { error: "Something is wrong, try again!" }
+    }
 
 }
