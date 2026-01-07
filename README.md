@@ -8,8 +8,6 @@ It provides a simple interface for users to ask questions and receive automated 
 ## 🚀 Prerequisites
 - [Node.js](https://nodejs.org/) (>= 24.12.0)
 - npm (comes with Node.js)
-- [MongoDB](https://www.mongodb.com/) (local installation or Atlas cloud)
-
 ---
 
 ## ⚙️ Installation & Setup
@@ -19,7 +17,7 @@ It provides a simple interface for users to ask questions and receive automated 
 cd front
 npm install
 npm run dev
-
+```
 
 ### Server (express.js)
 ```bash
