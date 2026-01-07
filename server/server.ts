@@ -65,7 +65,10 @@ interface History {
 
       await db.collection<History>("history").insertMany([questionObject, answerObject]);
 
-      res.json(botResponse);
+      //To fake loading state
+      setTimeout(() => {
+        res.json(botResponse);
+      }, 2000);
     } catch (err) {
       res.status(500).json({ error: "Failed to fetch the correct answer" });
     }
