@@ -1,6 +1,6 @@
 import express from "express";
 import { connectDB, getNativeDB } from "./db.ts";
-
+import cors from "cors"
 
 const app = express();
 const PORT = 7000;
@@ -22,6 +22,7 @@ interface History {
   await connectDB();
 
   app.use(express.json());
+  app.use(cors());
 
   app.get("/api/history", async (req: express.Request, res: express.Response) => {
     try {
