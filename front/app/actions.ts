@@ -1,9 +1,17 @@
 import axios from "./axios"
 
 export async function getAnswer(prevState: unknown, queryData: FormData) {
-    await axios.post("/get-answer", {
-        question : queryData.get("question")
-    })
+    const question = queryData.get("question")
 
-    return null
+    if (!question) return {
+        error: "field is required"
+    }
+
+    try {
+    const res = await axios.post("/get-answer", { question })
+    return { data: res.data }
+  } catch {
+    return { error: "Something is wrong, try again!" }
+  }
+
 }

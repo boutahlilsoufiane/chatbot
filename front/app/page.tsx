@@ -3,6 +3,7 @@
 import { useActionState, useEffect, useState } from "react"
 import axios from "./axios"
 import { getAnswer } from "./actions";
+import { error } from "console";
 
 
 interface History {
@@ -15,16 +16,18 @@ interface History {
 export default function Home() {
 
   const [messages, setMessage] = useState<History[] | null>(null)
-  const [, formAction, isPending] = useActionState(getAnswer, null);
+  const [state, formAction, isPending] = useActionState(getAnswer, null);
 
-
+  console.log(state)
+  useEffect(() => {
+    fetchHistory()
+  }, [])
 
   useEffect(() => {
-    if (!isPending) {
+    if (state?.data) {
       fetchHistory()
     }
-  }, [isPending])
-
+  }, [state?.data])
 
 
   const fetchHistory = () => {
@@ -95,6 +98,7 @@ export default function Home() {
                   }
                 </button>
               </div>
+              {state?.error && !isPending && <div className="text-[red] text-sm mt-1">{state.error}</div>}
             </div>
           </form>
         </div>
