@@ -1,1 +1,10 @@
+# dependencies
 server/node_modules
+front/node_modules
+
+# next.js
+front/.next/
+front/out/
+
+# production
+front//build
