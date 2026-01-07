@@ -3,19 +3,26 @@
 import { useEffect, useState } from "react"
 import axios from "./axios"
 
+
+interface History {
+   message: string;
+  sender: string;
+  date: Date;
+}
+
 export default function Home() {
 
   const [question, setQuestion] = useState("")
+  const [messages, setMessage] = useState<History[] | null>(null)
 
 
   useEffect(() => {
     axios.get('/history')
       .then(function (response) {
-        console.log(response);
+        setMessage(response.data)
       })
       .catch(function (error) {
-        // handle error
-        console.log(error);
+        setMessage(null)
       })
   }, [])
 
@@ -33,34 +40,17 @@ export default function Home() {
           </div>
 
           <div className="bg-[#F7F7F7] p-5 space-y-3 shadow-inner">
-            <div className="flex justify-end">
-              <div className="bg-[#333333] px-3 py-2 text-white rounded-2xl rounded-br-none shadow-md">Hello, Roungridh Him!</div>
-            </div>
-
-            <div className="flex flex-col justify-start gap-3">
-              <div className="flex">
-                <div className="bg-white px-3 py-2 text-gray-700 rounded-2xl rounded-bl-none shadow-md">Good morining, Anderson!</div>
-              </div>
-              <div className="flex">
-                <div className="bg-white px-3 py-2 text-gray-700 rounded-2xl rounded-bl-none shadow-md">How are you doing?</div>
-              </div>
-            </div>
-
-            <div className="flex justify-end">
-              <div className="bg-[#333333] px-3 py-2 text-white rounded-2xl rounded-br-none shadow-md">I'm fine... how about you?</div>
-            </div>
-
-            <div className="flex justify-start">
-              <div className="bg-white px-3 py-2 text-gray-700 rounded-2xl rounded-bl-none shadow-md">Great 😄</div>
-            </div>
-
-            <div className="flex justify-end">
-              <div className="bg-[#333333] px-3 py-2 text-white rounded-2xl rounded-br-none shadow-md">This is a chat sample! You can use it <br /> with your project.</div>
-            </div>
-
-            <div className="flex justify-start">
-              <div className="bg-white px-3 py-2 text-gray-700 rounded-2xl rounded-bl-none shadow-md">I really appreciated... ❤️</div>
-            </div>
+            {messages?.map(({ sender, message }) => {
+              if (sender === "bot") {
+                return <div className="flex justify-end">
+                  <div className="bg-[#333333] px-3 py-2 text-white rounded-2xl rounded-br-none shadow-md">{message}</div>
+                </div>
+              } else {
+                return <div className="flex justify-start">
+                  <div className="bg-white px-3 py-2 text-gray-700 rounded-2xl rounded-bl-none shadow-md">{message}</div>
+                </div>
+              }
+            })}
           </div>
 
           <div className="p-5">
