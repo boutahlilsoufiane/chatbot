@@ -72,7 +72,7 @@ export default function Home() {
               <div className="flex w-full">
 
                 <input name="question" className="w-full outline-none border border-gray-200 px-3 py-1.5 rounded-l-md" placeholder="Type message here..." />
-                <button type="submit" className="bg-[#333333] px-2.5 rounded-r-md">
+                <button  disabled={isPending} type="submit" className="bg-[#333333] px-2.5 rounded-r-md">
                   {
                     isPending ? <svg
                       className="animate-spin w-6 h-6 text-white"
