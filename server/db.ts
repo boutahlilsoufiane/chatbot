@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGO_URI = "mongodb://localhost:27017/support_chatbot";
+const MONGO_URI = "mongodb+srv://soufiane:djokovic333@cluster0.acjweaz.mongodb.net/?appName=Cluster0";
 
 export const connectDB = async () => {
   try {
