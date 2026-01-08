@@ -1,0 +1,26 @@
+{
+  "name": "support_chatbot",
+  "version": "1.0.0",
+  "description": "A chatbot application built with **Express**, **Next.js**, and **MongoDB**.  \r It provides a simple interface for users to ask questions and receive automated responses.",
+  "workspaces": [
+    "server",
+    "front"
+  ],
+  "scripts": {
+    "dev:server": "npm run dev --workspace=server",
+    "dev:front": "npm run dev --workspace=front",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boutahlilsoufiane/chatbot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/boutahlilsoufiane/chatbot/issues"
+  },
+  "homepage": "https://github.com/boutahlilsoufiane/chatbot#readme"
+}
