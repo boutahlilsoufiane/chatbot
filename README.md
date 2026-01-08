@@ -11,16 +11,15 @@ It provides a simple interface for users to ask questions and receive automated 
 ---
 
 ## ⚙️ Installation & Setup
+```bash
+npm install
+```
 
 ### Frontend (Next.js)
 ```bash
-cd front
-npm install
-npm run dev
+npm run dev:front
 ```
 
 ### Server (express.js)
 ```bash
-cd server
-npm install
-npm run dev
+npm run dev:server
